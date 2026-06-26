@@ -5,4 +5,5 @@ Local Deployment Setup
 &#x20;  ```bash
 &#x20;  git clone <your-github-repo-url>
 &#x20;  cd AWS\_Resume\_Analyzer
-
+NOTE :(see
+only pdf should be uploaded as word may come in two pages and it may give u wrong so fix that upload only pdf where it is fixed size and gie accurate rating )
