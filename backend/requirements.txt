@@ -1,0 +1,6 @@
+flask
+flask-cors
+pypdf
+groq
+reportlab
+python-dotenv

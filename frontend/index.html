@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Resume Intelligence Dashboard</title>
+  <meta name="description" content="Enterprise-grade ATS resume analyzer powered by Groq LLaMA 3.3. Upload your resume, paste a job description, and get an instant AI-powered match score with actionable feedback." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+</head>
+<body>
+
+  <!-- ── Header ─────────────────────────────────────────────── -->
+  <header>
+    <div class="container">
+      <div class="header-badge">
+        <span class="dot"></span>
+        AI-Powered · Groq LLaMA 3.3 · Free &amp; Open Source
+      </div>
+      <h1>⚡ Resume Intelligence</h1>
+      <p class="header-sub">
+        Enterprise-grade ATS optimization dashboard. Upload your resume, paste a job description, and get an instant match score.
+      </p>
+    </div>
+  </header>
+
+  <!-- ── Main ───────────────────────────────────────────────── -->
+  <main>
+    <div class="container">
+      <div class="divider"></div>
+
+      <div class="main-grid">
+
+        <!-- ══ Left Panel — Input ══════════════════════════════ -->
+        <div class="panel" id="input-panel">
+
+          <!-- Drop Zone -->
+          <div class="panel-title">Document Upload</div>
+          <div class="drop-zone" id="drop-zone" role="button" aria-label="Upload resume PDF" tabindex="0">
+            <span class="drop-icon">📄</span>
+            <h3>Drag &amp; drop your resume here</h3>
+            <p>or click to browse — PDF only</p>
+            <div id="file-name"></div>
+          </div>
+          <input type="file" id="file-input" accept=".pdf" aria-label="Resume PDF file input" />
+
+          <!-- Job Description -->
+          <label class="field-label" for="job-description">🎯 Target Job Description</label>
+          <textarea
+            id="job-description"
+            placeholder="Paste the full job description here — include required skills, responsibilities, and qualifications for the most accurate analysis..."
+            aria-label="Job description text area"
+          ></textarea>
+
+          <!-- Error Toast -->
+          <div id="error-toast" role="alert" aria-live="polite"></div>
+
+          <!-- CTA Button -->
+          <button id="analyze-btn" aria-label="Run ATS analysis">
+            <div class="spinner" id="btn-spinner"></div>
+            <span id="btn-text">⚡ Execute Profile Analysis</span>
+          </button>
+
+        </div><!-- /left panel -->
+
+        <!-- ══ Right Panel — Results ═══════════════════════════ -->
+        <div class="panel" id="results-panel">
+          <div class="panel-title">Metrics &amp; Intelligence Engine</div>
+
+          <!-- Empty State -->
+          <div class="empty-state" id="empty-state">
+            <span class="empty-icon">🔍</span>
+            <h3>Awaiting Analysis</h3>
+            <p>Upload a resume PDF and paste a job description, then click Analyze to see your results.</p>
+          </div>
+
+          <!-- Loading State -->
+          <div id="loading-overlay" aria-live="polite" aria-label="Analyzing resume">
+            <div class="loading-dots">
+              <span></span><span></span><span></span>
+            </div>
+            <p class="loading-text" id="loading-msg">Extracting resume text...</p>
+          </div>
+
+          <!-- ── Score Ring ──────────────────────────────────── -->
+          <div class="score-section" id="score-section">
+            <div class="score-ring-wrap">
+              <svg id="score-ring" width="180" height="180" viewBox="0 0 180 180" aria-hidden="true">
+                <circle class="score-ring-bg" cx="90" cy="90" r="80" />
+                <circle class="score-ring-fg" id="score-ring-fg" cx="90" cy="90" r="80" />
+              </svg>
+              <div class="score-center-text">
+                <div id="score-number">0</div>
+                <div class="score-pct">%</div>
+              </div>
+            </div>
+            <div class="score-label">ATS Match Score</div>
+            <div>
+              <span class="score-badge" id="score-badge"></span>
+            </div>
+          </div>
+
+          <!-- ── AI Feedback ─────────────────────────────────── -->
+          <div class="feedback-card" id="feedback-card">
+            <div class="card-label">💡 AI Strategy Roadmap</div>
+            <p id="feedback-text"></p>
+          </div>
+
+          <!-- ── Skills Grid ────────────────────────────────── -->
+          <div class="skills-section" id="skills-section">
+            <div class="skills-col">
+              <h4 class="h4-match">✅ Matched Capabilities</h4>
+              <div class="badge-wrap" id="matched-wrap"></div>
+            </div>
+            <div class="skills-col">
+              <h4 class="h4-miss">❌ Critical Skill Gaps</h4>
+              <div class="badge-wrap" id="missing-wrap"></div>
+            </div>
+          </div>
+
+          <!-- ── Download Button ───────────────────────────── -->
+          <button id="download-btn" aria-label="Download PDF analysis report">
+            <span>⬇️</span> Download PDF Report
+          </button>
+
+        </div><!-- /right panel -->
+
+      </div><!-- /main-grid -->
+    </div>
+  </main>
+
+  <!-- ── Footer ─────────────────────────────────────────────── -->
+  <footer>
+    <div class="container">
+      <p>
+        Powered by <span>Groq LLaMA 3.3 70B</span> · Built with Flask &amp; Vanilla JS ·
+        <span>100% Free &amp; Open Source</span>
+      </p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
